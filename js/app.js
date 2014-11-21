@@ -23,10 +23,9 @@ window.fbAsyncInit = function() {
       FB.login(function(response) {
         if(response.authResponse) {
             //讀取個人信息
-            console.log('h1', response);
-            FB.api('/me?fields=name,picture,likes,limits(60)', function(response){
-              // 
-              console.log('h2', response);
+            FB.api('/me?fields=name,picture,likes.limits(60)', function(response){
+              
+              
               $('.user-name').text(response.name);
               $('.user-photo') .attr('src',response.picture.data.url);
               $('#user').removeClass('hide');
