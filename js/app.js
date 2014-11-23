@@ -61,16 +61,18 @@ var loadPagesInfo = function(pages){
     //從 template 塞資料
     var $page = $(tmpl).clone();
     FB.api(item.id, function(response){
-      $page.find('.title a').attr('src', response.link).text(response.name);
+      $page.find('.title a').attr('href', response.link).text(response.name);
       $page.find('.likes').text(response.likes);
       $page.find('.about').text(response.about);
       FB.api(response.id+'/picture?type=large', function(response){
+        // 塞資料到 html 中
         $page.find('img').attr('src',response.data.url);
         $page.appendTo(current);
         counter++;
 
         // 塞完資料以後處理一下斷行
         if(counter===pages.length){
+          // / 利用 .current div:nth-child(3n)，讓每三個page 斷行
           $( '.current div:nth-child(3n)').after('<div class="clearfix"></div>');
           current.children('div').unwrap();
         }
