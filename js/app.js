@@ -23,7 +23,7 @@ window.fbAsyncInit = function() {
       FB.login(function(response) {
         if(response.authResponse) {
             //讀取個人信息
-            FB.api('/me?fields=name,picture,likes.limits(60)', function(response){
+            FB.api('/me?fields=name,picture,likes.limits(10)', function(response){
               
               
               $('.user-name').text(response.name);
